@@ -1,0 +1,6 @@
+node_modules/
+*.o
+*.out
+three_body_optimizer
+test_three_body_optimizer
+.DS_Store
