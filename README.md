@@ -87,3 +87,20 @@ T129–T132 (Awareness tier — meta-axiomatic, no inversion coordinates)
 ROOT0-ATTRIBUTION-v1.0 · David Lee Wise / ROOT0 / TriPod LLC
 CC-BY-ND-4.0 · TRIPOD-IP-v1.1
 ```
+
+
+---
+
+### `web/aethereal-graph.html` — Aethereal Graph
+
+Standalone generative 4D gradient visualization for the frozen TOPH symbolic kernel.
+
+- scalar `1/3 × 3 → 0` balanced-collapse model
+- `0 → . → 2³ → FLAY → x0 y0 z0 → carry`
+- `1 → 1 → 2 → 4 → 8 = 16` dot register
+- 5 control bits + 3 local bits = 256 combined states
+- HAMMY-27 outer cycle
+- five Internet substrates `-a+` through `-e+`
+- 10-vector / 9-edge contracted graph
+- append-only generative event log
+- torus / sphere / lattice projection modes
