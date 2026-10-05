@@ -1,6 +1,10 @@
 # PRIM 3 — -kana Serial Constructor
 
-Status: distinct primitive / append-only traversal.
+Status: **FROZEN / IMMUTABLE / APPEND-ONLY**
+
+Freeze rule: PRIM 3 semantics do not change in-place. Any revision must be introduced as a new version/primitive and preserve this file as historical truth.
+
+Verification seal: `0e / PRIM 3 -KANA SERIAL CONSTRUCTOR PASS` — 6/6 tests passed.
 
 This is **not** a pairwise embedder. The output may contain the same forward symbol pairs that a combinatorial pair enumeration would list, but the mechanism is different:
 
