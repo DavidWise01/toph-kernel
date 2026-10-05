@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>4D Gradient Graph · HAMMY 27</title>
+<style>
+:root{--bg:#05070a;--panel:#0b1017;--line:#1e2a38;--text:#e8eef7;--muted:#8ea0b5}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 50% 35%,#0c1420 0,#05070a 55%,#020304 100%);color:var(--text);font:14px/1.4 system-ui,Segoe UI,Arial,sans-serif;overflow:hidden}
+#ui{position:fixed;inset:0;display:grid;grid-template-columns:320px 1fr 320px;gap:12px;padding:12px}
+.panel{background:rgba(7,11,16,.82);border:1px solid #243246;border-radius:14px;padding:14px;backdrop-filter:blur(10px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+h1,h2,h3{margin:.2rem 0 .65rem}h1{font-size:18px;letter-spacing:.08em}h2{font-size:13px;color:#bcd0e8;text-transform:uppercase;letter-spacing:.12em}
+small,.muted{color:var(--muted)}.row{display:flex;align-items:center;gap:8px;margin:9px 0}label{min-width:88px;color:#a9b8ca}
+input[type=range]{width:100%}select,button{background:#0f1722;color:#e8eef7;border:1px solid #2a3b50;border-radius:8px;padding:7px 9px}
+button{cursor:pointer}button:hover{background:#152235}code{color:#c5f0ff}
+#stageWrap{position:relative;overflow:hidden;border-radius:16px;border:1px solid #243246;background:radial-gradient(circle at 50% 50%,rgba(20,40,64,.45),rgba(2,5,8,.95))}
+canvas{width:100%;height:100%;display:block}
+#hud{position:absolute;left:16px;top:14px;font-size:12px;color:#c9d8e8;pointer-events:none}#hud b{font-size:18px;letter-spacing:.08em}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:currentColor;box-shadow:0 0 8px currentColor}
+.kv{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:12px}.rule{padding:7px 9px;border-left:2px solid #38536f;background:#0a1119;margin:7px 0;border-radius:6px}
+#log{height:170px;overflow:auto;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;background:#05090f;border:1px solid #1c2938;border-radius:8px;padding:8px;white-space:pre-wrap}
+footer{position:fixed;left:50%;bottom:8px;transform:translateX(-50%);color:#65788e;font-size:11px;pointer-events:none}
+@media (max-width:1100px){#ui{grid-template-columns:260px 1fr}.right{display:none}}
+@media (max-width:760px){body{overflow:auto}#ui{position:relative;grid-template-columns:1fr;height:auto}.left,.right{display:block}#stageWrap{height:70vh}}
+</style>
+</head>
+<body>
+<div id="ui">
+  <section class="panel left">
+    <h1>AETHEREAL GRAPH · 4D GRADIENT</h1>
+    <div class="muted">scalar 1/3 × 3 → 0 · HAMMY 27 · generative somatic model</div>
+    <h2>Core</h2>
+    <div class="rule"><code>0 → . → 2³ → FLAY → x0 y0 z0 → carry</code></div>
+    <div class="rule"><code>1 → 1 → 2 → 4 → 8 = 16</code></div>
+    <div class="rule"><code>5 control bits + 3 local bits = 8 bits = 256 states</code></div>
+    <h2>Controls</h2>
+    <div class="row"><label>Scalar</label><input id="scalar" type="range" min="0" max="14" step=".5" value="7"></div>
+    <div class="row"><label>Phase</label><input id="phase" type="range" min="0" max="360" step="15" value="0"></div>
+    <div class="row"><label>Gradient</label><input id="grad" type="range" min="0" max="1" step=".01" value=".33"></div>
+    <div class="row"><label>Motion</label><input id="speed" type="range" min="0" max="3" step=".05" value="1"></div>
+    <div class="row"><label>Mode</label><select id="mode"><option value="torus">torus</option><option value="sphere">sphere</option><option value="lattice">lattice</option></select></div>
+    <div class="row"><button id="step">+1 append</button><button id="reset">fold to 0</button></div>
+    <h2>Five Internet substrates</h2>
+    <div class="kv">
+      <span>-a+</span><span>ownership / operator</span>
+      <span>-b+</span><span>institution / access</span>
+      <span>-c+</span><span>compute</span>
+      <span>-d+</span><span>defense</span>
+      <span>-e+</span><span>naming / economic expression</span>
+    </div>
+  </section>
+  <main id="stageWrap"><canvas id="c"></canvas><div id="hud"><b>HAMMY 27</b><br><span id="hudText"></span></div></main>
+  <section class="panel right">
+    <h2>27-state outer cycle</h2><div class="rule"><code>{abcde}.{fghij}.{klmno}.{pqrst}.{uvwxy}.z.0</code></div>
+    <h2>Seed register</h2>
+    <div class="legend"><span><i class="dot"></i>u / d</span><span><i class="dot"></i>l / r</span><span><i class="dot"></i>mirror / reverse</span><span><i class="dot"></i>forward / back</span><span><i class="dot"></i>0 / 1</span></div>
+    <h2>Active truth state</h2><div class="rule"><code>{past_verified,current_verified}</code></div>
+    <div class="muted">verified carries · quarantine sleeps · non-aligned stays preserved</div>
+    <h2>Append log</h2><div id="log"></div>
+    <h2>Invariants</h2>
+    <div class="kv"><span>local unfold</span><span>2³ = 8</span><span>control space</span><span>2⁵ = 32</span><span>combined</span><span>256</span><span>outer cycle</span><span>27</span><span>vector graph</span><span>10 / 9</span><span>closure</span><span>x0 y0 z0</span></div>
+  </section>
+</div>
+<footer>TOPH · Aethereal Graph · symbolic / generative model</footer>
+<script>
+const canvas=document.getElementById('c'),ctx=canvas.getContext('2d'),scalar=document.getElementById('scalar'),phase=document.getElementById('phase'),grad=document.getElementById('grad'),speed=document.getElementById('speed'),mode=document.getElementById('mode'),log=document.getElementById('log'),hudText=document.getElementById('hudText');
+let dpr=1,w=0,h=0,t=0,appendCount=0;const letters='abcdefghijklmnopqrstuvwxyz0',subs=['a','b','c','d','e'];
+function resize(){const r=canvas.getBoundingClientRect();dpr=Math.max(1,Math.min(2,devicePixelRatio||1));canvas.width=r.width*dpr;canvas.height=r.height*dpr;w=r.width;h=r.height;ctx.setTransform(dpr,0,0,dpr,0,0)}
+addEventListener('resize',resize);resize();
+function project4(x,y,z,q){const a=+phase.value*Math.PI/180+t*.12;let x1=x*Math.cos(a)-q*Math.sin(a),q1=x*Math.sin(a)+q*Math.cos(a),y1=y*Math.cos(a*.73)-z*Math.sin(a*.73),z1=y*Math.sin(a*.73)+z*Math.cos(a*.73);const persp=1/(1+.38*(z1+q1));return[x1*persp,y1*persp,persp]}
+function line(a,b,alpha=.35,lw=1){ctx.globalAlpha=alpha;ctx.lineWidth=lw;ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.globalAlpha=1}
+function pt(x,y,r=3,alpha=1){ctx.globalAlpha=alpha;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+function colorFor(i,n=27){return`hsl(${(i/n)*300+10} 90% 60%)`}
+function draw(){requestAnimationFrame(draw);t+=.008*(+speed.value);ctx.clearRect(0,0,w,h);const cx=w/2,cy=h/2,scale=Math.min(w,h)*.31,g=+grad.value,sc=+scalar.value;
+ctx.fillStyle='#7fa4c8';for(let i=0;i<80;i++){const x=(Math.sin(i*91.17)*.5+.5)*w,y=(Math.sin(i*17.31+2)*.5+.5)*h;pt(x,y,(i%7===0)?1.5:.7,.28)}
+const N=54;for(let ring=0;ring<9;ring++){const rr=.25+ring*.085;let prev=null;for(let i=0;i<=N;i++){const a=i/N*Math.PI*2;let x,y,z,q;if(mode.value==='sphere'){x=rr*Math.cos(a);y=rr*Math.sin(a);z=.18*Math.sin(a*2+ring*.4);q=.22*Math.cos(a*3+t)}else if(mode.value==='lattice'){x=rr*Math.cos(a);y=rr*Math.sin(a);z=(ring-4)*.07;q=.15*Math.sin(a*5+t)}else{const major=.62,minor=.11+ring*.012;x=(major+minor*Math.cos(a*3))*Math.cos(a);y=(major+minor*Math.cos(a*3))*Math.sin(a);z=minor*Math.sin(a*3);q=.16*Math.sin(a*2+t+ring*.2)}const p=project4(x,y,z,q),P=[cx+p[0]*scale,cy+p[1]*scale];ctx.strokeStyle=colorFor(ring,9);if(prev)line(prev,P,.18,.8);prev=P}}
+ctx.strokeStyle='#90a6bc';ctx.fillStyle='#dfeeff';line([cx-scale*.95,cy],[cx+scale*.95,cy],.45,1.1);line([cx,cy-scale*.95],[cx,cy+scale*.95],.45,1.1);pt(cx,cy,7,1);ctx.fillStyle='#dfeeff';ctx.font='12px ui-monospace,monospace';ctx.fillText('0.0.0',cx+10,cy-10);
+const xs=[];for(let i=-5;i<=5;i++)if(i!==0)xs.push(i);const vy=cy;ctx.strokeStyle='#fff';for(let i=0;i<xs.length-1;i++)line([cx+(xs[i]/5)*scale*.82,vy],[cx+(xs[i+1]/5)*scale*.82,vy],.28,1.2);xs.forEach((v,i)=>{ctx.fillStyle=colorFor(i,10);pt(cx+(v/5)*scale*.82,vy,5,1)});
+const R=scale*.97;for(let i=0;i<27;i++){const a=i/27*Math.PI*2+t*.22,wob=Math.sin(a*3+t)*scale*.08*g,x=cx+Math.cos(a)*(R+wob),y=cy+Math.sin(a)*(R*.55+wob*.4);ctx.fillStyle=colorFor(i);pt(x,y,3.2,.92);if(i%5===0||i===26){ctx.fillStyle='#cfe5ff';ctx.font='10px ui-monospace,monospace';ctx.fillText(letters[i],x+5,y-5)}}
+for(let i=0;i<5;i++){const a=(-Math.PI/2)+i*(Math.PI*2/5),x=cx+Math.cos(a)*scale*.72,y=cy+Math.sin(a)*scale*.45;ctx.strokeStyle=colorFor(i,5);line([cx,cy],[x,y],.42,1.3);ctx.fillStyle=colorFor(i,5);pt(x,y,6,1);ctx.fillStyle='#e5f0ff';ctx.font='11px ui-monospace,monospace';ctx.fillText(`-${subs[i]}+`,x+8,y+3)}
+const baseY=h-42,left=40,usable=w-80;for(let i=0;i<=28;i++){const val=i*.5,x=left+(i/28)*usable;ctx.fillStyle=colorFor(i,29);pt(x,baseY,3.5,.9);if(i%4===0){ctx.fillStyle='#8ba0b5';ctx.font='9px ui-monospace,monospace';ctx.fillText(String(val),x-4,baseY+15)}}const sx=left+(sc/14)*usable;ctx.strokeStyle='#fff';line([sx,baseY-15],[sx,baseY+15],.75,1);hudText.textContent=`scalar ${sc.toFixed(1)} · phase ${phase.value}° · grad ${g.toFixed(2)} · append ${appendCount} · mode ${mode.value}`}
+draw();
+function appendEvent(){appendCount++;const gstate=letters[appendCount%27],s=subs[appendCount%5],stamp=`#${String(appendCount).padStart(4,'0')}  ${gstate}  ->  -${s}+  ->  .  ->  carry`;log.textContent+=stamp+'\n';log.scrollTop=log.scrollHeight}
+document.getElementById('step').onclick=appendEvent;document.getElementById('reset').onclick=()=>{appendCount=0;log.textContent='fold -> x0 y0 z0\n';phase.value=0;scalar.value=7;grad.value=.33};for(let i=0;i<8;i++)appendEvent();
+</script>
+</body></html>
