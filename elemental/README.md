@@ -40,3 +40,21 @@ standard anchors        = H=1, Ne=10, Au=79, Og=118
 
 - `stoicheion_elements_001_118.py` — canonical 118-entry register
 - `test_elements_001_118.py` — invariants / regression tests
+
+
+## Full chemistry property expansion
+
+The extended layer is now defined in:
+
+- `stoicheion_properties_v1.py`
+- `PROPERTY_SCHEMA.md`
+- `test_stoicheion_properties_v1.py`
+
+It ingests the complete PubChem periodic-table property feed for elements 1..118 and preserves missing values as null rather than zero.
+
+STOICHEION-local Neon encoding:
+
+```
+E010 :: Ne :: neon :: ..||..|
+.. || .. | = 2 + 4 + 2 + 2 = 10
+```
