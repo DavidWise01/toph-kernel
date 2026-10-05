@@ -81,7 +81,7 @@ const R=scale*.97;for(let i=0;i<27;i++){const a=i/27*Math.PI*2+t*.22,wob=Math.si
 for(let i=0;i<5;i++){const a=(-Math.PI/2)+i*(Math.PI*2/5),x=cx+Math.cos(a)*scale*.72,y=cy+Math.sin(a)*scale*.45;ctx.strokeStyle=colorFor(i,5);line([cx,cy],[x,y],.42,1.3);ctx.fillStyle=colorFor(i,5);pt(x,y,6,1);ctx.fillStyle='#e5f0ff';ctx.font='11px ui-monospace,monospace';ctx.fillText(`-${subs[i]}+`,x+8,y+3)}
 const baseY=h-42,left=40,usable=w-80;for(let i=0;i<=28;i++){const val=i*.5,x=left+(i/28)*usable;ctx.fillStyle=colorFor(i,29);pt(x,baseY,3.5,.9);if(i%4===0){ctx.fillStyle='#8ba0b5';ctx.font='9px ui-monospace,monospace';ctx.fillText(String(val),x-4,baseY+15)}}const sx=left+(sc/14)*usable;ctx.strokeStyle='#fff';line([sx,baseY-15],[sx,baseY+15],.75,1);hudText.textContent=`scalar ${sc.toFixed(1)} · phase ${phase.value}° · grad ${g.toFixed(2)} · append ${appendCount} · mode ${mode.value}`}
 draw();
-function appendEvent(){appendCount++;const gstate=letters[appendCount%27],s=subs[appendCount%5],stamp=`#${String(appendCount).padStart(4,'0')}  ${gstate}  ->  -${s}+  ->  .  ->  carry`;log.textContent+=stamp+'\n';log.scrollTop=log.scrollHeight}
+function appendEvent(){appendCount++;const gstate=letters[(appendCount-1)%27],s=subs[(appendCount-1)%5],stamp=`#${String(appendCount).padStart(4,'0')}  ${gstate}  ->  -${s}+  ->  .  ->  carry`;log.textContent+=stamp+'\n';log.scrollTop=log.scrollHeight}
 document.getElementById('step').onclick=appendEvent;document.getElementById('reset').onclick=()=>{appendCount=0;log.textContent='fold -> x0 y0 z0\n';phase.value=0;scalar.value=7;grad.value=.33};for(let i=0;i<8;i++)appendEvent();
 </script>
 </body></html>
