@@ -1,0 +1,28 @@
+{
+  "name": "PRIM 3 -kana Serial Constructor",
+  "status": "FROZEN / IMMUTABLE / APPEND-ONLY",
+  "version": "v1",
+  "repository": "DavidWise01/toph-kernel",
+  "module_path": "frozen/primitive_constructor_v1.py",
+  "test_path": "frozen/test_primitive_constructor_v1.py",
+  "documentation_path": "frozen/PRIM_3_KANA.md",
+  "module_blob_sha": "5f26c77a295916f3847e20b5ad87a0f4a4dcd2d7",
+  "test_blob_sha": "45c3107b3198d3486f330d1a34f50d18817a8e36",
+  "verification": {
+    "status": "PASS",
+    "tests_passed": 6,
+    "tests_total": 6,
+    "seal": "0e / PRIM 3 -KANA SERIAL CONSTRUCTOR PASS"
+  },
+  "invariants": [
+    "seed order preserved",
+    "forward targets only",
+    "signed traversal alternates - then +",
+    "anchor completes walk before carry",
+    "carry is explicit and append-only",
+    "reverse duplicates are forbidden",
+    "serial/triangular constructor, not pairwise embedding",
+    "abcd at 60 degrees per signed traversal closes at 720 degrees"
+  ],
+  "mutation_rule": "Do not edit v1 semantics in place. Create a new version for any semantic change."
+}
