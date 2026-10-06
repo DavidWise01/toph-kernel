@@ -1,0 +1,62 @@
+{
+  "name": "STOICHEION Homeostatic Substrate",
+  "version": "v3",
+  "status": "FROZEN / IMMUTABLE / APPEND-ONLY",
+  "seal": "0e / STOICHEION HOMEOSTATIC SUBSTRATE v3 PASS",
+  "primitives": {
+    "scalar_zero": "0",
+    "realized_dot": ".",
+    "shell_unit": "-sh+",
+    "shell_triple": "-sh+-sh+-sh+",
+    "information_carrier": "0______{{i}}______{{i}}______0",
+    "balanced_ternary": [
+      -1,
+      0,
+      1
+    ],
+    "operand_carrier": [
+      1,
+      0,
+      1
+    ],
+    "reverse_nest": [
+      "65/5",
+      "15/5",
+      3,
+      2,
+      1,
+      1
+    ]
+  },
+  "constants": {
+    "health_neighbor_degree": 6,
+    "pressure_channels": 8,
+    "valence_band": [
+      0.8,
+      1,
+      1.2
+    ],
+    "microstep": "1e-36",
+    "gravity_years_billion": 13.2,
+    "time_years_billion": 0.6,
+    "whole_years_billion": 13.8,
+    "permutation_field": 65,
+    "operator_address_field": 15,
+    "top_offset": [
+      2,
+      -3
+    ],
+    "bottom_offset": [
+      -3,
+      2
+    ]
+  },
+  "upstream": [
+    "elemental/STOICHEION_250E.md",
+    "elemental/STOICHEION_250E_MULTILANE_V2.md",
+    "elemental/stoicheion_250e_aligned_v1.py",
+    "elemental/stoicheion_250e_multilane_v2.py",
+    "elemental/stoicheion_atomic_mass_lane_v1.py"
+  ],
+  "scientific_boundary": "Model-local formal substrate; internal-consistency benchmark only."
+}
